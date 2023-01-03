@@ -1,7 +1,10 @@
 .wrapper {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 	width: 10rem;
-	height: 100vh;
+	height: calc(100vh - 8rem);
 	padding: 6rem 2.5rem 5rem 2rem;
 	background-color: var(--light-lilac);
     margin-top: 0;
@@ -41,5 +44,9 @@
     text-decoration: none;
 }
        
-    
+h4 {
+    font-weight: 500;
+    margin: 0;
+    padding-left: 0.75rem;
+}
 

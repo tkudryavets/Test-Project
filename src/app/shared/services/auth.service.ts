@@ -8,17 +8,19 @@ import { USERS } from 'src/app/entities/constants/users.constants';
 
 export class AuthService {
   public isLoggedIn = false;
+  public currentUser = '';
   private users = USERS;
   
   constructor(private router: Router) {}
 
   public login(name: string, password: string) {
-    let isUserExist = !!(this.users.filter((elem) => {
+    let user = this.users.filter((elem) => {
       return elem.name == name && elem.password == password
-    }).length);
-    if(isUserExist){
+    });
+    if(user.length){
       this.isLoggedIn = true;
       this.router.navigateByUrl('/profile');
+      this.currentUser = user[0].name;
       return true;
     }
     return false;
@@ -26,5 +28,6 @@ export class AuthService {
 
   public logout() {
     this.isLoggedIn = false;
+    this.currentUser = '';
   }
 }
