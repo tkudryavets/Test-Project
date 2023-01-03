@@ -1,4 +1,9 @@
 .flex-container {
     display: flex;
     flex-direction: row;
+    min-width: 100%;
+    min-height: 100%;
+}
+app-page-wrapper {
+    flex-grow: 1;
 }

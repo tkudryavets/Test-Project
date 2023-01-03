@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { PageWrapperModule } from './entities/components/page-wrapper/page-wrapper.module';
+import { PageWrapperModule } from './shared/components/page-wrapper/page-wrapper.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { NavPanelModule } from './entities/components/nav-panel/nav-panel.module';
+import { NavPanelModule } from './shared/components/nav-panel/nav-panel.module';
 
 @NgModule({
   declarations: [
