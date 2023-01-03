@@ -11,9 +11,8 @@ export class CheckAuth implements CanActivate{
     constructor (private router: Router, private authService: AuthService){}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean> | boolean{
         if (!this.authService.isLoggedIn) {
-            // redirect to some view explaining what happened
             this.router.navigateByUrl('/login');
-             return false;
+            return false;
         } else {
             return true;
         }

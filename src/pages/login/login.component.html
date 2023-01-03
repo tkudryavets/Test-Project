@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="container">
+    <div class="card">
+        <h2>Авторизация</h2>
+        <form>
+            <input matInput name="user" placeholder="Логин" [(ngModel)]="login" value="login"/>
+            <input matInput
+            type="password"
+            name="password"
+            placeholder="Пароль"
+            [(ngModel)]="password"
+            />
+            <button class="orange-button" mat-raised-button color="primary"
+            (click)="submitForm()">Войти</button>
+        </form>
+    </div>
+</div>

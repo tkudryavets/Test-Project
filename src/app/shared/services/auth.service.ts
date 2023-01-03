@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { USERS } from 'src/app/entities/constants/users.constants';
 
 @Injectable({
@@ -9,14 +10,16 @@ export class AuthService {
   public isLoggedIn = false;
   private users = USERS;
   
-  constructor() {}
+  constructor(private router: Router) {}
 
   login(name: string, password: string) {
     let isUserExist = !!(this.users.filter((elem) => {
       return elem.name == name && elem.password == password
     }).length);
-    if(isUserExist)
+    if(isUserExist){
       this.isLoggedIn = true;
+      this.router.navigateByUrl('/profile');
+    }
   }
 
   logout() {
