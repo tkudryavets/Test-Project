@@ -2,6 +2,7 @@
     <div class="card">
         <h2>Авторизация</h2>
         <form>
+            <label [(ngModel)]="loginError" name="loginError" ngDefaultControl>{{ loginError }}</label>
             <input matInput name="user" placeholder="Логин" [(ngModel)]="login" value="login"/>
             <input matInput
             type="password"

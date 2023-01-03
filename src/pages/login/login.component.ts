@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -6,15 +6,18 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  public loginError = '';
   protected login = '';
   protected password = '';
+
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
-
-  submitForm(){
-    this.authService.login(this.login, this.password);
+  public submitForm(){
+    if (!this.authService.login(this.login, this.password)){
+      this.loginError = 'Имя пользователя или пароль введены неверно';
+    } else {
+      this.loginError = '';
+    }
   }
 }

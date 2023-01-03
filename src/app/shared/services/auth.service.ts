@@ -12,17 +12,19 @@ export class AuthService {
   
   constructor(private router: Router) {}
 
-  login(name: string, password: string) {
+  public login(name: string, password: string) {
     let isUserExist = !!(this.users.filter((elem) => {
       return elem.name == name && elem.password == password
     }).length);
     if(isUserExist){
       this.isLoggedIn = true;
       this.router.navigateByUrl('/profile');
+      return true;
     }
+    return false;
   }
 
-  logout() {
+  public logout() {
     this.isLoggedIn = false;
   }
 }
