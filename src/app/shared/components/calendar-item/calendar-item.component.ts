@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { IDay } from 'src/app/entities/constants/plans.constants';
 
 @Component({
@@ -6,10 +6,10 @@ import { IDay } from 'src/app/entities/constants/plans.constants';
   templateUrl: './calendar-item.component.html',
   styleUrls: ['./calendar-item.component.css']
 })
-export class CalendarItemComponent implements OnInit {
+export class CalendarItemComponent implements DoCheck {
   @Input() day: IDay = {date: new Date(),
                   advent: '',
-                  participants: ['']};
+                  participants: ''};
   @Input() isFirstWeek = false;
 
   public status = false;
@@ -19,11 +19,11 @@ export class CalendarItemComponent implements OnInit {
 
   protected copyDay= {date: new Date(),
     advent: '',
-    participants: ['']};
+    participants: ''};
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngDoCheck(): void {
       this.copyDay.date = new Date(this.day.date);
       this.copyDay.advent = this.day.advent;
       this.copyDay.participants = this.day.participants;
@@ -31,7 +31,7 @@ export class CalendarItemComponent implements OnInit {
       this.day.date = this.day.date as Date;
 
       let now = new Date();
-      this.isToday = (this.day.date.getTime() == (new Date(now.getFullYear(), now.getMonth(), now.getDate())).getTime());
+      this.isToday = (this.copyDay.date.getTime() == (new Date(now.getFullYear(), now.getMonth(), now.getDate())).getTime());
 
   }
 

@@ -16,7 +16,7 @@ import { NavPanelModule } from './shared/components/nav-panel/nav-panel.module';
     AppRoutingModule,
     PageWrapperModule,
     NoopAnimationsModule,
-    NavPanelModule
+    NavPanelModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

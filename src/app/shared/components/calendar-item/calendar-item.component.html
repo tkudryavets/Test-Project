@@ -27,10 +27,8 @@
         <h5 *ngIf="day.advent">
             {{ copyDay.advent }}
         </h5>
-        <p *ngIf="day.participants.length">
-            <ng-container *ngFor="let participant of day.participants">
-                {{ participant }}
-            </ng-container>
+        <p *ngIf="day.participants">
+                {{ day.participants }}
         </p>
     </div>
 </ng-container>

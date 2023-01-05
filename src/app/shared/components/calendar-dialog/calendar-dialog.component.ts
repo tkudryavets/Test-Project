@@ -1,0 +1,40 @@
+import {Component, Inject} from '@angular/core';
+import {
+	FormControl,
+	FormGroup,
+} from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { IDay } from 'src/app/entities/constants/plans.constants';
+
+@Component({
+  selector: 'app-calendar-dialog',
+  templateUrl: './calendar-dialog.component.html',
+  styleUrls: ['./calendar-dialog.component.css']
+})
+
+export class CalendarDialogComponent  {
+  public requestForm: FormGroup;
+	public formToImport!: IDay;
+  constructor(private dialogRef: MatDialogRef<CalendarDialogComponent>,
+		@Inject(MAT_DIALOG_DATA) public data: object,) { 
+      this.requestForm = new FormGroup(
+        {
+          date: new FormControl(),
+          advent: new FormControl(),
+          participants: new FormControl(),
+        },
+      );
+    }
+
+  public onSend(): void {
+    if (this.requestForm.controls['date'].value && this.requestForm.controls['advent'].value) {
+      this.formToImport = {
+        date: this.requestForm.controls['date'].value.toString(),
+        advent: this.requestForm.controls['advent'].value,
+        participants: this.requestForm.controls['participants'].value
+      };
+      this.dialogRef.close(this.formToImport);
+    }
+  }
+
+}
