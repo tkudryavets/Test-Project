@@ -1,1 +1,23 @@
-<p>profile works!</p>
+<div>
+   <h2>Добро пожаловать на страницу Профиля</h2> 
+   <div class="info">
+       <div class="avatar">
+           <img src="../../assets/naitiri.jpg">
+        </div>
+        <div class="small-info">
+            <p><strong>Имя:</strong> Нейтири</p>
+            <p><strong>Год рождения:</strong> 2136</p>
+            <p><strong>Племя:</strong> Оматикая</p>
+        </div>
+    </div>
+    <div class='plans' >
+        <p><strong>Запланированные события:</strong></p>
+        <ng-container *ngFor="let plan of plans">
+            <p>
+                <span><strong>{{ plan.date | date : "dd.mm.yy" }} </strong></span>
+                <span>  {{ plan.advent }}  </span>
+                <span *ngIf="plan.participants.length"> ({{ plan.participants }})</span>
+            </p>
+        </ng-container>
+    </div>
+</div>

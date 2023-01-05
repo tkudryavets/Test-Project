@@ -5,6 +5,7 @@ import {RouterModule, Routes, PreloadAllModules} from '@angular/router';
 
 import {RouterPaths} from './entities/enums/RouterPaths.enum';
 import { CheckAuth } from './shared/guards/checkAuth';
+import { CheckAuthCalendar } from './shared/guards/checkAuth calendar';
 
 const routes: Routes = [
 	{
@@ -19,6 +20,7 @@ const routes: Routes = [
 	{
 		path: RouterPaths.CALENDAR,
 		loadChildren: () => import('../pages/calendar/calendar.module').then((m) => m.CalendarModule),
+		canActivate: [CheckAuthCalendar]
 	},
 	{
 		path: RouterPaths.LOGIN,
