@@ -12,12 +12,10 @@
     </div>
     <div class='plans' >
         <p><strong>Запланированные события:</strong></p>
-        <ng-container *ngFor="let plan of plans">
-            <p>
-                <span><strong>{{ plan.date | date : "dd.mm.yy" }} </strong></span>
+            <p *ngFor="let plan of plans">
+                <span><strong>{{ plan.date | date : "dd.MM.yy" }} </strong></span>
                 <span>  {{ plan.advent }}  </span>
                 <span *ngIf="plan.participants.length"> ({{ plan.participants }})</span>
             </p>
-        </ng-container>
     </div>
 </div>
