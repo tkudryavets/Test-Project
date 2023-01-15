@@ -1,0 +1,9 @@
+<div class='plans' >
+	<p><strong>Запланированные события:</strong></p>
+	<p *ngIf="!plans.length">У вас нет запланированных событий</p>
+	<p *ngFor="let plan of plans">
+		<span><strong>{{ plan.date | date : "dd.MM.yy" }} </strong></span>
+		<span>  {{ plan.advent }}  </span>
+		<span *ngIf="plan.participants.length"> ({{ plan.participants }})</span>
+	</p>
+</div>

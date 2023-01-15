@@ -1,29 +1,4 @@
-.avatar {
-    display: inline-block;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 100px;
-    height: 100px;
-}
-.avatar img{
-    width:100%;
-    height:100%;
-    object-fit: cover;
-}
 h2 {
     font-size: 1.5rem;
     font-weight: 500;
-}
-.info {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    gap: 2rem;
-}
-.small-info p{
-    margin: 0.5rem;
-}
-.plans {
-    margin-top: 2rem;
-    max-height: 20rem;
 }
