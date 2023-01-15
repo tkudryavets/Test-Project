@@ -17,6 +17,11 @@ export const NAVIGATION_LINKS = [
 		icon: NavigationIcons.CALENDAR,
 	},
 	{
+		path: RouterPaths.EXCHANGE_RATES,
+		title: 'Exchange rates',
+		icon: NavigationIcons.EXCHANGE_RATES
+	},
+	{
 		path: RouterPaths.INFO,
 		title: 'Info',
 		icon: NavigationIcons.INFO,

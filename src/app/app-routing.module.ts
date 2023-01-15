@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import {RouterModule, Routes, PreloadAllModules} from '@angular/router';
 
@@ -26,7 +25,11 @@ const routes: Routes = [
 		path: RouterPaths.LOGIN,
 		loadChildren: () => import('../pages/login/login.module').then((m) => m.LoginModule),
 	},
-  {
+	{
+		path: RouterPaths.EXCHANGE_RATES,
+		loadChildren: () => import('../pages/exchange rates/exchange rates.module').then((m) => m.ExchangeRatesModule),
+	},
+  	{
 		path: RouterPaths.INFO,
 		loadChildren: () => import('../pages/info/info.module').then((m) => m.InfoModule),
 	}

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PageWrapperModule } from './shared/components/page-wrapper/page-wrapper.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NavPanelModule } from './shared/components/nav-panel/nav-panel.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent,],
@@ -15,6 +16,7 @@ import { NavPanelModule } from './shared/components/nav-panel/nav-panel.module';
     PageWrapperModule,
     NoopAnimationsModule,
     NavPanelModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
