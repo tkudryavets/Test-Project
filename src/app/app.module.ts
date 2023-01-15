@@ -8,9 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NavPanelModule } from './shared/components/nav-panel/nav-panel.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,6 +17,6 @@ import { NavPanelModule } from './shared/components/nav-panel/nav-panel.module';
     NavPanelModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
