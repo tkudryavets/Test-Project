@@ -5,7 +5,7 @@ export interface IDay {
 }
 export let plans: IDay[] = [
     {
-        date: 'January 12, 2023',
+        date: 'January 23, 2023',
         advent: 'Спасти Пандору',
         participants: 'Джейк Салли'
     },{
