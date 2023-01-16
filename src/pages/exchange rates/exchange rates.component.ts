@@ -16,7 +16,7 @@ export class ExchangeRatesComponent implements OnInit {
   ngOnInit(): void {
     this.currencyService.getRates()
     .subscribe((value) => {
-      this.exchangeRates = value;
+      this.exchangeRates = value;      
     });
   }
 
