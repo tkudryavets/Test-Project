@@ -59,7 +59,10 @@ export class CurrencyTableComponent implements OnInit {
         this.cursor as HTMLDivElement
       ).style.transform = `translate3d(calc(${mouseX}px + 2rem), calc(${mouseY}px + 2rem), 0)`;
     };
-
     window.addEventListener('mousemove', positionElement);
+  }
+
+  public hideFlag(): void {
+    this.isLoaded = false;
   }
 }

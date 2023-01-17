@@ -52,6 +52,7 @@ button {
   border: 1px solid #9e9e9e;
   border-radius: 0.25rem;
   width: 19rem;
+  resize: none;
 }
 
 .mat-dialog-content {

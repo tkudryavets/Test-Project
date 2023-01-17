@@ -1,6 +1,6 @@
 import { IDay } from "../interfaces/IDay.interface";
 
-export let plans: IDay[] = [
+export let PLANS: IDay[] = [
     {
         id: new Date('2023-01-18').getTime(),
         date: 'January 18, 2023',

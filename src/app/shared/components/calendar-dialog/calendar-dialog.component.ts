@@ -15,7 +15,7 @@ export class CalendarDialogComponent {
 
   constructor(
     private dialogRef: MatDialogRef<CalendarDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: object
+    @Inject(MAT_DIALOG_DATA) public data: Object
   ) {
     this.requestForm = new FormGroup({
       date: new FormControl(),
