@@ -227,6 +227,11 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
 
   public onKey(event: any) {
     if (event.key == 'Enter') {
+      if (Date.parse(event.target.value)) {
+        this.selectedMonth = new Date(event.target.value);
+        this.calcMonth(this.selectedMonth);
+        return;
+      }
       this.plans.forEach((item) => {
         if (
           item.advent
@@ -242,10 +247,6 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
         }
       });
 
-      if (Date.parse(event.target.value)) {
-        this.selectedMonth = new Date(event.target.value);
-        this.calcMonth(this.selectedMonth);
-      }
     }
   }
 
@@ -255,7 +256,9 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
         top: 'calc(50vh - 10.875 * 1rem)',
         left: 'calc(50vw - 14.125 * 1rem)',
       },
-      data: {},
+      data: {
+        day: this.selectedDay,
+      },
     });
     this.subscribes.push(
       dialogRef.afterClosed().subscribe((data: IDay) => {

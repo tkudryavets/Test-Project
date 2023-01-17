@@ -16,6 +16,7 @@ export class PlansService {
   }
 
   public addPlan(day: IDay): Observable<IDay[]> {
+    if(!day.date) return this.plans$;
     let arr = this.plans$.value;
     let ind = arr.findIndex((obj) => obj.date == day.date);
 
