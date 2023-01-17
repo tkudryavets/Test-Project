@@ -7,6 +7,11 @@ import { NavPanelModule } from './shared/components/nav-panel/nav-panel.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { NgxsModule } from '@ngxs/store';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { AppState } from './app.state';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,6 +21,7 @@ import { AppComponent } from './app.component';
     NoopAnimationsModule,
     NavPanelModule,
     HttpClientModule,
+    NgxsModule.forRoot([AppState]), NgxsLoggerPluginModule.forRoot(), NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

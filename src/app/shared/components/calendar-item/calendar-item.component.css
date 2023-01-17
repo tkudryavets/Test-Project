@@ -41,3 +41,8 @@ div {
 .gray {
   background-color: rgb(241, 241, 241);
 }
+
+.selected {
+  border: 1px solid #529ff7;
+  box-sizing: border-box;
+}

@@ -10,6 +10,7 @@ import { IDay } from 'src/app/entities/interfaces/IDay.interface';
 export class CalendarItemComponent implements DoCheck {
   @Input() day: IDay = { date: new Date(), advent: '', participants: '' };
   @Input() isFirstWeek = false;
+  @Input() selected = false;
 
   public status = false;
   public isToday = false;
@@ -24,7 +25,7 @@ export class CalendarItemComponent implements DoCheck {
     'Суббота',
   ];
 
-  protected copyDay = { date: new Date(), advent: '', participants: '' };
+  public copyDay = { date: new Date(), advent: '', participants: '' };
 
   constructor() {}
 
@@ -33,7 +34,7 @@ export class CalendarItemComponent implements DoCheck {
     this.copyDay.advent = this.day.advent;
     this.copyDay.participants = this.day.participants;
     this.status = this.day.advent != '';
-    this.day.date = this.day.date as Date;
+    this.day.date = new Date(this.day.date);
 
     let now = new Date();
     this.isToday =

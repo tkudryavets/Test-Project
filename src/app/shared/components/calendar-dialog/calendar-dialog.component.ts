@@ -15,13 +15,22 @@ export class CalendarDialogComponent {
 
   constructor(
     private dialogRef: MatDialogRef<CalendarDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: object
-  ) {
-    this.requestForm = new FormGroup({
-      date: new FormControl(),
-      advent: new FormControl(),
-      participants: new FormControl(),
-    });
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {    
+    if(data.day.date) {
+      this.requestForm = new FormGroup({
+        date: new FormControl(data.day.date),
+        advent: new FormControl(),
+        participants: new FormControl(),
+      });
+    }
+    else {
+      this.requestForm = new FormGroup({
+        date: new FormControl(),
+        advent: new FormControl(),
+        participants: new FormControl(),
+      });
+    }
   }
 
   public onSend(): void {
