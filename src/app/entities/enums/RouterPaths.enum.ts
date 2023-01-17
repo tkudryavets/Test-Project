@@ -3,12 +3,14 @@ export enum RouterPaths {
 	LOGIN = 'login',
     CALENDAR = 'calendar',
     MAIN = '',
-	INFO = 'info'
+	EXCHANGE_RATES = 'exchange_rates',
+	INFO = 'info',
 }
 
 export enum NavigationIcons {
 	PROFILE = 'person',
 	CALENDAR = 'calendar_month',
 	INFO = 'info',
-	MAIN = 'home'
+	MAIN = 'home',
+	EXCHANGE_RATES = 'currency_exchange',
 }

@@ -5,11 +5,11 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { IDay } from 'src/app/entities/constants/plans.constants';
 import { MatDialog } from '@angular/material/dialog';
 import { CalendarDialogComponent } from 'src/app/shared/components/calendar-dialog/calendar-dialog.component';
 import { PlansService } from 'src/app/shared/services/plans.service';
 import { Subscription } from 'rxjs';
+import { IDay } from 'src/app/entities/interfaces/IDay.interface';
 
 @Component({
   selector: 'app-calendar',
@@ -21,7 +21,20 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
   public days: IDay[] = [];
   public firstWeek: IDay[] = [];
   public selectedMonth = new Date();
-  public months = ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'];
+  public months = [
+    'Янв',
+    'Февр',
+    'Март',
+    'Апр',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Авг',
+    'Сент',
+    'Окт',
+    'Нояб',
+    'Дек',
+  ];
   public plans: IDay[] = [];
   private subscribes: Subscription[] = [];
 

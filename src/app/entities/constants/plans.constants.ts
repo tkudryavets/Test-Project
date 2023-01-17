@@ -1,8 +1,5 @@
-export interface IDay {
-    date: string | Date,
-    advent: string,
-    participants: string
-}
+import { IDay } from "../interfaces/IDay.interface";
+
 export let plans: IDay[] = [
     {
         date: 'January 18, 2023',

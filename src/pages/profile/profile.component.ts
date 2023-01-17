@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IDay } from 'src/app/entities/constants/plans.constants';
+import { IDay } from 'src/app/entities/interfaces/IDay.interface';
 import { PlansService } from 'src/app/shared/services/plans.service';
 
 @Component({

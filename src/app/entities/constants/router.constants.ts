@@ -3,22 +3,27 @@ import {RouterPaths, NavigationIcons} from '../enums/RouterPaths.enum';
 export const NAVIGATION_LINKS = [
 	{
 		path: RouterPaths.MAIN,
-		title: 'Main',
+		title: 'Главная',
 		icon: NavigationIcons.MAIN,
 	},
 	{
 		path: RouterPaths.PROFILE,
-		title: 'Profile',
+		title: 'Профиль',
 		icon: NavigationIcons.PROFILE,
 	},
     {
 		path: RouterPaths.CALENDAR,
-		title: 'Calendar',
+		title: 'Календарь',
 		icon: NavigationIcons.CALENDAR,
 	},
 	{
+		path: RouterPaths.EXCHANGE_RATES,
+		title: 'Курсы валют',
+		icon: NavigationIcons.EXCHANGE_RATES
+	},
+	{
 		path: RouterPaths.INFO,
-		title: 'Info',
+		title: 'Инфо',
 		icon: NavigationIcons.INFO,
 	}
 ];

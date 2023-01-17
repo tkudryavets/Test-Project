@@ -3,13 +3,9 @@ import { CommonModule } from '@angular/common';
 import { PageWrapperComponent } from './page-wrapper.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
-
-
 @NgModule({
   declarations: [PageWrapperComponent],
-  imports: [
-    AppRoutingModule
-  ],
-  exports: [PageWrapperComponent]
+  imports: [CommonModule, AppRoutingModule],
+  exports: [PageWrapperComponent],
 })
-export class PageWrapperModule { }
+export class PageWrapperModule {}

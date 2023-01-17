@@ -1,16 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IDay } from 'src/app/entities/constants/plans.constants';
+import { Component, Input } from '@angular/core';
+import { IDay } from 'src/app/entities/interfaces/IDay.interface';
 
 @Component({
   selector: 'app-profile-plans',
   templateUrl: './profile-plans.component.html',
-  styleUrls: ['./profile-plans.component.css']
+  styleUrls: ['./profile-plans.component.css'],
 })
-export class ProfilePlansComponent implements OnInit {
+export class ProfilePlansComponent {
   @Input() plans: IDay[] = [];
-  constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  constructor() {}
 }
