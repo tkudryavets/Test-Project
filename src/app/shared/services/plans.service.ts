@@ -11,28 +11,33 @@ export class PlansService {
 
   constructor() {}
 
-  public addPlan(day: IDay): void {
-    let arr = this.plans$.value;
-    let ind = arr.findIndex((obj) => obj.date == day.date);
-    if (ind == -1) {
-      return this.plans$.next(this.plans$.value.concat(day));
-    }
+  public getPlans() {
+    return this.plans$;
   }
 
-  public updatePlan(day: IDay): void {
+  public addPlan(day: IDay): BehaviorSubject<IDay[]> {
+    let arr = this.plans$.value;
+    let ind = arr.findIndex((obj) => obj.date == day.date);
+
+    if (ind == -1) {
+      day.id = new Date(day.date).getTime();
+      this.plans$.next(this.plans$.value.concat(day));
+    }
+    return this.plans$;
+  }
+
+  public updatePlan(day: IDay) {
     let arr = this.plans$.value;
     let ind = arr.findIndex((obj) => obj.id == day.id);
     if (day.date == '') {
       arr.splice(ind, 1);
       this.plans$.next(arr);
-      return;
-    }
-
-    if (ind != -1) {
+    } else if (ind != -1) {
       arr[ind].advent = day.advent;
       arr[ind].date = day.date;
       arr[ind].participants = day.participants;
       this.plans$.next(arr);
     }
+    return this.plans$;
   }
 }

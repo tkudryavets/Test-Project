@@ -1,22 +1,16 @@
 //Read
-export class GetUsers {
-    static readonly type = '[Users] Fetch';
+export class GetPlans {
+    static readonly type = '[Plans] Fetch';
 }
 
 //Create
-export class AddUsers {
-    static readonly type = '[Users] Add';
+export class AddPlan {
+    static readonly type = '[Plans] Add';
     constructor(public payload: any) { }
 }
 
 //Update
-export class UpdateUsers {
-    static readonly type = '[Users] Update';
-    constructor(public payload: any, public id: number, public i:number) { }
-}
-
-//Delete
-export class DeleteUsers {
-    static readonly type = '[Users] Delete';
-    constructor(public id: number) { }
+export class UpdatePlan {
+    static readonly type = '[Plans] Update';
+    constructor(public payload: any) { }
 }

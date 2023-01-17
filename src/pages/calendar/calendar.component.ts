@@ -1,23 +1,20 @@
-import {
-  Component,
-  DoCheck,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CalendarDialogComponent } from 'src/app/shared/components/calendar-dialog/calendar-dialog.component';
 import { CalendarUpdateDialogComponent } from 'src/app/shared/components/calendar-update-dialog/calendar-update-dialog.component';
 import { PlansService } from 'src/app/shared/services/plans.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { IDay } from 'src/app/entities/interfaces/IDay.interface';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
+import { Select, Store } from '@ngxs/store';
+import { AppState } from 'src/app/app.state';
+import { AddPlan, GetPlans, UpdatePlan } from 'src/app/app.action';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
 })
-
 export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
   public days: IDay[] = [];
   public firstWeek: IDay[] = [];
@@ -37,13 +34,22 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
     'Дек',
   ];
   public plans: IDay[] = [];
-  public selectedDay: IDay|undefined = undefined;
+  public selectedDay: IDay | undefined = undefined;
   private subscribes: Subscription[] = [];
 
-  constructor(public dialog: MatDialog, private plansService: PlansService) {
-    this.subscribes.push(
-      plansService.plans$.subscribe((plans: IDay[]) => (this.plans = plans))
-    );
+  @Select(AppState.selectStateData)
+  plans$!: BehaviorSubject<IDay[]>;
+
+  constructor(
+    public dialog: MatDialog,
+    private store: Store
+  ) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(new GetPlans());
+    this.plans$.subscribe((returnData) => {
+      this.plans = returnData;
+    });
     this.calcMonth(this.selectedMonth);
   }
 
@@ -54,8 +60,6 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
   ngOnDestroy(): void {
     this.subscribes.forEach((sub) => sub.unsubscribe);
   }
-
-  ngOnInit(): void {}
 
   private calcMonth(day: Date) {
     day = new Date(day);
@@ -88,7 +92,7 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
               day.getFullYear(),
               day.getMonth() - 1,
               daysAmountPrev - i + 1
-            ).getTime()
+            ).getTime(),
           });
         } else {
           this.firstWeek.push({
@@ -103,7 +107,7 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
               day.getFullYear(),
               day.getMonth() - 1,
               daysAmountPrev - i + 1
-            ).getTime()
+            ).getTime(),
           });
         }
       }
@@ -123,7 +127,7 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
             day.getFullYear(),
             day.getMonth(),
             daysAmountPrev + 1
-          ).getTime()
+          ).getTime(),
         });
     }
 
@@ -142,7 +146,7 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
             day.getFullYear(),
             day.getMonth() - 1,
             daysAmountPrev - i + 1
-          ).getTime()
+          ).getTime(),
         });
       }
 
@@ -157,11 +161,7 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
             date: new Date(day.getFullYear(), day.getMonth(), i),
             advent: '',
             participants: '',
-            id: new Date(
-              day.getFullYear(),
-              day.getMonth(),
-              - i
-            ).getTime()
+            id: new Date(day.getFullYear(), day.getMonth(), -i).getTime(),
           }
         );
       }
@@ -184,11 +184,7 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
             date: new Date(day.getFullYear(), day.getMonth(), i),
             advent: '',
             participants: '',
-            id: new Date(
-              day.getFullYear(),
-              day.getMonth(),
-               i
-            ).getTime()
+            id: new Date(day.getFullYear(), day.getMonth(), i).getTime(),
           }
         );
       }
@@ -203,11 +199,7 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
             date: new Date(day.getFullYear(), day.getMonth(), i),
             advent: '',
             participants: '',
-            id: new Date(
-              day.getFullYear(),
-              day.getMonth() - 1,
-              i
-            ).getTime()
+            id: new Date(day.getFullYear(), day.getMonth() - 1, i).getTime(),
           }
         );
       }
@@ -267,35 +259,35 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
     });
     this.subscribes.push(
       dialogRef.afterClosed().subscribe((data: IDay) => {
-        this.plansService.addPlan(data);
+        this.store.dispatch(new AddPlan(data));
       })
     );
   }
 
-  public onSelect(day: IDay): void{
-    this.selectedDay = day;    
+  public onSelect(day: IDay): void {
+    this.selectedDay = day;
   }
 
-  public updateDay(): void{
-    if(this.selectedDay) {
-      if(typeof this.selectedDay.date == 'string')
-      this.selectedDay.date = new Date(this.selectedDay.date);
-      
+  public updateDay(): void {
+    if (this.selectedDay) {
+      if (typeof this.selectedDay.date == 'string')
+        this.selectedDay.date = new Date(this.selectedDay.date);
+
       const dialogRef = this.dialog.open(CalendarUpdateDialogComponent, {
         position: {
           top: 'calc(50vh - 10.875 * 1rem)',
-        left: 'calc(50vw - 14.125 * 1rem)',
-      },
-      data: {
-        day: this.selectedDay
-      },
-    });
-    this.subscribes.push(
-      dialogRef.afterClosed().subscribe((data: IDay) => {
-         this.plansService.updatePlan(data);
-      })
-    ); 
-    this.selectedDay = undefined;
+          left: 'calc(50vw - 14.125 * 1rem)',
+        },
+        data: {
+          day: this.selectedDay,
+        },
+      });
+      this.subscribes.push(
+        dialogRef.afterClosed().subscribe((data: IDay) => {
+          this.store.dispatch(new UpdatePlan(data));
+        })
+      );
+      this.selectedDay = undefined;
     }
   }
 }
