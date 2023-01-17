@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of } from 'rxjs';
-import { IDay, plans } from 'src/app/entities/constants/plans.constants';
+import { BehaviorSubject } from 'rxjs';
+import { plans } from 'src/app/entities/constants/plans.constants';
+import { IDay } from 'src/app/entities/interfaces/IDay.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 
 export class PlansService {
@@ -11,12 +12,11 @@ export class PlansService {
 
   constructor() {}
 
-  public addPlan(data: IDay) {
-      let arr = this.plans$.value;
-      let ind = arr.findIndex(obj => obj.date == data.date);
-      if(ind == -1){
-        return this.plans$.next(this.plans$.value.concat(data));
-      }
+  public addPlan(data: IDay): void {
+    let arr = this.plans$.value;
+    let ind = arr.findIndex((obj) => obj.date == data.date);
+    if (ind == -1) {
+      return this.plans$.next(this.plans$.value.concat(data));
+    }
   }
-
 }
