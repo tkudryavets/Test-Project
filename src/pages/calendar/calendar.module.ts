@@ -13,12 +13,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButton, MatButtonModule } from '@angular/material/button';
-// import { CalendarDialogModule } from 'src/app/shared/components/calendar-dialog/calendar-dialog.module';
-
+import { CalendarUpdateDialogComponent } from 'src/app/shared/components/calendar-update-dialog/calendar-update-dialog.component';
 
 
 @NgModule({
-  declarations: [CalendarComponent, CalendarDialogComponent],
+  declarations: [CalendarComponent, CalendarDialogComponent, CalendarUpdateDialogComponent],
   imports: [
     CommonModule, CalendarRoutingModule, CalendarItemModule, MatIconModule,
     FormsModule,

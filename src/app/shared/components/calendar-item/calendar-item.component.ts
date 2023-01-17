@@ -10,6 +10,7 @@ import { IDay } from 'src/app/entities/interfaces/IDay.interface';
 export class CalendarItemComponent implements DoCheck {
   @Input() day: IDay = { date: new Date(), advent: '', participants: '' };
   @Input() isFirstWeek = false;
+  @Input() selected = false;
 
   public status = false;
   public isToday = false;
