@@ -17,7 +17,7 @@ export class CalendarDialogComponent {
     private dialogRef: MatDialogRef<CalendarDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {    
-    if(data.day.date) {
+    if(data?.day?.date) {
       this.requestForm = new FormGroup({
         date: new FormControl(data.day.date),
         advent: new FormControl(),
