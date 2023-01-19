@@ -2,10 +2,8 @@ import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CalendarDialogComponent } from 'src/app/shared/components/calendar-dialog/calendar-dialog.component';
 import { CalendarUpdateDialogComponent } from 'src/app/shared/components/calendar-update-dialog/calendar-update-dialog.component';
-import { PlansService } from 'src/app/shared/services/plans.service';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IDay } from 'src/app/entities/interfaces/IDay.interface';
-import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
 import { Select, Store } from '@ngxs/store';
 import { AppState } from 'src/app/app.state';
 import { AddPlan, GetPlans, UpdatePlan } from 'src/app/app.action';
@@ -38,7 +36,7 @@ export class CalendarComponent implements OnInit, OnDestroy, DoCheck {
   private subscribes: Subscription[] = [];
 
   @Select(AppState.selectStateData)
-  plans$!: BehaviorSubject<IDay[]>;
+  plans$!: Observable<IDay[]>;
 
   constructor(
     public dialog: MatDialog,

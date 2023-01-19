@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { AddPlan, GetPlans, UpdatePlan } from '../app/app.action';
+import { IDay } from './entities/interfaces/IDay.interface';
 import { PlansService } from './shared/services/plans.service';
 
 export class PlanStateModel {
-  Plans: any;
+  Plans: any = [];
 }
 
 @State<PlanStateModel>({
@@ -23,6 +24,15 @@ export class AppState {
     return state.Plans;
   }
 
+  @Selector()
+  static selectStateDataFilter(state: PlanStateModel){
+    let today = new Date();
+    today.setDate(today.getDate() - 1);
+    return  state.Plans.filter(
+      (p: { date: string | number | Date; }) => new Date(p.date).getTime() >= today.getTime()
+    ) ;
+  }
+
   @Action(GetPlans)
   getDataFromState(ctx: StateContext<PlanStateModel>) {
     return this.plansService.getPlans().pipe(
@@ -31,7 +41,7 @@ export class AppState {
 
         ctx.setState({
           ...state,
-          Plans: returnData, //here the data coming from the API will get assigned to the Plan variable inside the appstate
+          Plans: returnData, 
         });
       })
     );

@@ -1,3 +1,5 @@
 <h2>Информация о пользователе</h2> 
 <app-profile-info></app-profile-info>
-<app-profile-plans [plans]="plans"></app-profile-plans>
+<ng-container *ngIf="plans$ | async as plans">
+    <app-profile-plans [plans]="plans"></app-profile-plans>
+</ng-container>
